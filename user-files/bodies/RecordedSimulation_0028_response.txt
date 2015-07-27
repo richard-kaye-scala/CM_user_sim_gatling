@@ -1,0 +1,1 @@
+{"name":"Scala Enterprise Content Manager","version":"11.00.00","releaseDate":"2014-07-01","network":"ContentManager License","contextPath":"/ContentManager"}

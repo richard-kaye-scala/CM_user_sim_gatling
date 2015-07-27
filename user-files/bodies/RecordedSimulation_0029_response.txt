@@ -1,0 +1,6 @@
+{
+  "code": "NoUserLogon",
+  "description": "The user is not logon",
+  "faultFrom": "Client.Fault",
+  "httpErrorCode": 401
+}

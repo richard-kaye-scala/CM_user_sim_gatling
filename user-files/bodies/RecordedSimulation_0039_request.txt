@@ -1,0 +1,1 @@
+{"username":"administrator","password":"scala1234","networkId":0,"rememberMe":false}
