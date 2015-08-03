@@ -24,7 +24,7 @@ class cmLogin extends Simulation {
 	val headers_2 = Map(
 		"X-Requested-With" -> "XMLHttpRequest",
 		"Content-Type" -> "application/json; charset=UTF-8",
-		"token" -> "${session_token}")
+		"apiToken" -> "${session_token}")
 
     val uri1 = "http://marabunta.scala.com:8080/ContentManager/api/rest"
 
@@ -35,13 +35,13 @@ class cmLogin extends Simulation {
 			.body(StringBody("""{ "username": "administrator", "password": "scala1234" }""")).asJSON
 			.check(jsonPath("$.token").saveAs("cookie_token"))
 			.check(jsonPath("$.apiToken").saveAs("session_token"))
-			.check(status.is(201))
-		.exec(addCookie(Cookie("token","${cookie_token}")))
-		.exec(http("playerhealth")
-			.get("/ContentManager/api/rest/playerhealth?offset=0&limit=999999&search=&sort=&count=0&filters=%7B%22playerHealthState%22%3A%7B%22values%22%3A%5B%22UNCLEARED%22%5D%7D%7D&fields=id")
-			.headers(headers_2)
+			.check(status.is(200))
 			)
-
-
+		// 	.exec(addCookie(Cookie("token","${cookie_token}")))
+		    .exec(http("playerhealth")
+		 	.get("/ContentManager/api/rest/playerhealth?offset=0&limit=999999&search=&sort=&count=0&filters=%7B%22playerHealthState%22%3A%7B%22values%22%3A%5B%22UNCLEARED%22%5D%7D%7D&fields=id")
+		 	.headers(headers_2)
+		 	.check(status.is(200))
+		 	)
 	setUp(scn.inject(atOnceUsers(1))).protocols(httpProtocol)
 }
