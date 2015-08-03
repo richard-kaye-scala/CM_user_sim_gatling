@@ -1,3 +1,4 @@
 # ignore all files in output directory
-output\
-results\
+output/*
+results/*
+target/*
